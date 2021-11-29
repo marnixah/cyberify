@@ -28,7 +28,7 @@
 
 <div class="min-h-screen">
 	<div class="bg-white dark:bg-gray-800 max-w-4xl mx-auto px-4 py-6 my-10 rounded-md">
-		<textarea use:autoresize class="w-full rounded-md p-0.5" type="text" bind:value={normalText} on:input={updateCyberifiedText} />
+		<textarea use:autoresize class="w-full rounded-md py-0.5 px-1 resize-none outline-none" type="text" bind:value={normalText} on:input={updateCyberifiedText} />
 		<pre class="text-white">{cyberifiedText}</pre>
 	</div>
 </div>
