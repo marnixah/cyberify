@@ -29,6 +29,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"svelte-textarea-autoresize": "^1.0.0",
 		"wordpos": "^2.1.0"
 	}
 }

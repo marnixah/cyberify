@@ -1,15 +1,28 @@
 <script lang="ts">
-	let normalText = '';
-	let cyberifiedText = '';
+  import { autoresize } from 'svelte-textarea-autoresize'
+
+	let normalText = 'I am the one that is going to be cyberfied';
+	let cyberifiedText = 'I am the cyberone that is cybergoing to be cyberfied';
 
 	const updateCyberifiedText = () =>
-    normalText ?
-		fetch(`/cyberify/${normalText}`)
-			.then((response) => response.text())
-			.then((resText) => (cyberifiedText = resText))
-      :
-      cyberifiedText = '';
+		fetch("/cyberify", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        text: normalText
+      })
+    })
+    .then(response => response.text())
+    .then(text => {
+      cyberifiedText = text;
+    });
 </script>
 
-<input type="text" bind:value={normalText} on:input={updateCyberifiedText} />
-<p>{cyberifiedText}</p>
+<div class="min-h-screen">
+	<div class="bg-white dark:bg-gray-800 max-w-4xl mx-auto px-4 py-6 my-10 rounded-md">
+		<textarea use:autoresize class="w-full rounded-md p-0.5" type="text" bind:value={normalText} on:input={updateCyberifiedText} />
+		<pre class="text-white">{cyberifiedText}</pre>
+	</div>
+</div>
