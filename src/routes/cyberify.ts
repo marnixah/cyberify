@@ -8,15 +8,13 @@ export async function post(req) {
 	} = req;
 
 	let nouns;
-
 	try {
-		nouns = await wordpos.getNouns(text);
+		const pos = await wordpos.getPOS(text);
+		nouns = [...pos.nouns, ...pos.rest];
+		nouns = nouns.filter((noun) => noun.length >= 3);
+		nouns = nouns.filter((noun) => !noun.includes('cyber'));
 	} catch (err) {
-		// Ignore TypeError
-		if (err.name == 'TypeError') {
-			return { body: text };
-		}
-		throw err;
+		return { body: text };
 	}
 	const words = text.split(' ');
 	const cyberWords = words.map((word: string, i) => (nouns.includes(word) ? 'cyber' + word : word));
