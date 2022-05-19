@@ -1,7 +1,22 @@
 <script lang="ts">
+	let ssr = false;
 	import { autoresize } from 'svelte-textarea-autoresize';
 	import SvelteSeo from 'svelte-seo';
 	import jq from 'jquery';
+	import React from 'react';
+	import ReactDOM from 'react-dom/client';
+	import { onMount } from 'svelte';
+
+	function MyApp() {
+		return React.createElement('div', null, 'Hello world');
+	}
+	// Render react on client
+	onMount(() => {
+		if (typeof window !== 'undefined') {
+			const root = ReactDOM.createRoot(document.getElementById('root'));
+			root.render(React.createElement(MyApp));
+		}
+	});
 
 	let normalText =
 		'Welkom naar de cyberify official website where we kan alle text cyberifyen. </p>';
