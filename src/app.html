@@ -5,9 +5,25 @@
 		<meta name="description" content="" />
 		<link rel="icon" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		%svelte.head%
 	</head>
-	<body class="bg-gray-100 dark:bg-gray-900">
-		<div id="svelte">%svelte.body%</div>
+	// body element
+	<body
+		style="background-image: url(https://cyber.equipment/cyber_plain.png)"
+		class="bg-yellow-500 bg-repeat-y bg-contain overflow-hidden w-screen h-screen"
+	>
+		<div
+			class="absolute z-0 bg-red w-24 h-24 animate-spin bg-red-500 transform translate-x-96 translate-y-96"
+		></div>
+		<!-- spinning logo in center of page -->
+	  <div class="container mx-auto px-4">
+			<div class="absolute left-0 top0 flex justify-center items-center h-screen w-screen animate-spin ease-out pointer-events-none">
+				<img src="https://cyber.equipment/cyber_plain.png" class="w-32 h-32 animate-bounce ease-linear duration-75 bg-pink-500 p-4 m-8" />
+			</div>
+		<body class="first-letter:capitalize opacity-50">
+			test
+			<div id="svelte">%svelte.body%</div>
+		</body>
 	</body>
 </html>
